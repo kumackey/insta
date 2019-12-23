@@ -37,13 +37,15 @@ gem 'annotate'
 gem 'binding_of_caller'
 gem 'better_errors'
 gem 'html2slim'
-gem 'slim-rails'
-gem 'sorcery'
+gem 'pry-byebug'
+gem 'pry-rails'
+gem 'pry-doc'
 gem 'rubocop-rails'
 gem 'rubocop', require: false
 gem 'rails-i18n', '~> 5.1'
 gem 'redis-rails'
-
+gem 'slim-rails'
+gem 'sorcery'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
