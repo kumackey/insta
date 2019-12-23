@@ -60,11 +60,11 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.session_store :redis_store,
-    servers: {
-      host: 'localhost',
-      port: 6379,
-      db: 0,
-      namespace: 'sessions'
-    },
-    expire_after: 60.minutes
+                       servers: {
+                         host: 'localhost',
+                         port: 6379,
+                         db: 0,
+                         namespace: 'sessions'
+                       },
+                       expire_after: 60.minutes
 end
