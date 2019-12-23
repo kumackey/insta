@@ -34,6 +34,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # 追加gem
 gem 'annotate'
+gem 'binding_of_caller'
+gem 'better_errors'
 gem 'html2slim'
 gem 'slim-rails'
 gem 'sorcery'
@@ -41,6 +43,7 @@ gem 'rubocop-rails'
 gem 'rubocop', require: false
 gem 'rails-i18n', '~> 5.1'
 gem 'redis-rails'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
