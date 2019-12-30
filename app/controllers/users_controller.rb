@@ -12,7 +12,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to @user, success: 'ユーザを作成しました'
+      @user = User.find_by(id: @user.id)
+      auto_login(@user)
+      redirect_back_or_to @user, success: 'ユーザを作成しました'
     else
       render 'new'
     end
