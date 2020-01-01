@@ -13,8 +13,8 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: instac
-  password: 1nsta%Cl0ne
+  username: 
+  password: 
   socket: /tmp/mysql.sock
 
 development:
@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: insta_production
-  username: instac
-  password: 1nsta%Cl0ne
+  username: 
+  password: 
