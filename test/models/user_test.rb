@@ -31,6 +31,13 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
+  test 'name should be maximum 100 characters' do
+    @user.name = 'a'*101
+    assert_not @user.valid?
+    @user.name = 'a'*100
+    assert @user.valid?
+  end
+
   test 'email should be present' do
     @user.email = '     '
     assert_not @user.valid?
@@ -42,4 +49,5 @@ class UserTest < ActiveSupport::TestCase
     @user.save
     assert_not duplicate_user.valid?
   end
+  
 end
