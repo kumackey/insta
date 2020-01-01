@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       auto_login(@user)
       redirect_back_or_to @user, success: 'ユーザを作成しました'
     else
-      render 'new'
+      render :new
     end
   end
 

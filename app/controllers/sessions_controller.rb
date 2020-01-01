@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       redirect_back_or_to @user, success: 'ログインしました'
     else
       flash.now[:danger] = 'ログインに失敗しました'
-      render action: 'new'
+      render :new
     end
   end
 
