@@ -1,0 +1,8 @@
+span users#showのid: 
+= @user.id
+br
+- if logged_in?
+  span ログインしているid: 
+  = current_user.id
+- else
+  span ログインしていません
