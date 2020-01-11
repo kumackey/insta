@@ -40,4 +40,10 @@ RSpec.describe User, type: :model do
     user.valid?
     expect(user.errors[:email]).to include("はすでに存在します")
   end
+
+  it "ユーザが消去されたとき投稿も消えること" do
+  owner = FactoryBot.create(:user)
+  FactoryBot.create(:post, user_id: owner.id)
+  expect{ owner.destroy }.to change{ Post.count }.by(-1)
+  end
 end

@@ -16,6 +16,7 @@
 #
 
 class User < ApplicationRecord
+  has_many :posts, dependent: :destroy
   authenticates_with_sorcery!
   validates :name, presence: true, length: { maximum: 100 }
   validates :email, presence: true, uniqueness: { case_sensitive: false }
