@@ -1,8 +1,11 @@
 class PostsController < ApplicationController
-  skip_before_action :require_login
+  # skip_before_action :require_login, only: %i[index]
 
   def index
-    @user = User.new
-    @post = @user.posts.build(content: 'text', image: 'image')
+    @posts = Post.all.includes(:user)
+  end
+
+  def show
+    @posts = Post.all.includes(:user)
   end
 end
