@@ -5,6 +5,14 @@ class PostsController < ApplicationController
     @posts = Post.all.includes(:user)
   end
 
+  def create
+    @post = Post.new
+  end
+
+  def new
+    @post = Post.new
+  end
+
   def show
     @posts = Post.all.includes(:user)
   end
