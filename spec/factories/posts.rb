@@ -21,7 +21,7 @@
 
 FactoryBot.define do
   factory :post do
-    images { [ Rack::Test::UploadedFile.new(Rails.root.join('spec/factories/test1.png'), 'spec/factories/test1.png') ] }
+    images { [File.open("#{Rails.root}/spec/factories/test1.png")] }
     content { "テストです" }
     association :user
   end
