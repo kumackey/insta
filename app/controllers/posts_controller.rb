@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_action :require_login, only: %i[new create]
+  skip_before_action :require_login, only: %i[new create edit]
 
   def index
     @posts = Post.all.includes(:user)
@@ -17,6 +17,10 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+  end
+
+  def edit
+    @post = current_user.posts.find(params[:id])
   end
 
   def show
