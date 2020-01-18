@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_action :require_login, only: %i[new create edit update]
+  before_action :require_login, only: %i[new create edit update]
 
   def index
     @posts = Post.all.includes(:user)
