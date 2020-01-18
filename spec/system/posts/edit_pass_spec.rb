@@ -9,6 +9,7 @@ RSpec.describe 'Posts', type: :system do
     fill_in '本文', with: 'This is second post'
     click_button '更新する'
     expect(page).to have_content '投稿を更新しました'
+    visit post_path post
     expect(page).to have_content 'This is second post'
     expect(page).not_to have_content 'This is first post'
   end

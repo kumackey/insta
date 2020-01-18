@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_action :require_login, only: %i[new create edit]
+  skip_before_action :require_login, only: %i[new create edit update]
 
   def index
     @posts = Post.all.includes(:user)
@@ -24,7 +24,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @posts = Post.all.includes(:user)
+    @post = Post.find(params[:id])
   end
 
   def update
