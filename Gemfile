@@ -34,14 +34,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # 追加gem
 gem 'annotate'
-gem 'binding_of_caller'
-gem 'better_errors'
 gem 'html2slim'
-gem 'pry-byebug'
-gem 'pry-rails'
-gem 'pry-doc'
-gem 'rubocop-rails'
-gem 'rubocop', require: false
 gem 'rails-i18n', '~> 5.1'
 gem 'redis-rails'
 gem 'slim-rails'
@@ -49,6 +42,8 @@ gem 'sorcery'
 gem 'carrierwave', '~> 1.0.0'
 gem 'mini_magick'
 gem 'font-awesome-sass', '~> 5.4.1'
+gem 'jquery-rails'
+gem 'popper_js'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -67,6 +62,13 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec'
+  gem 'rubocop-rails'
+  gem 'rubocop', require: false
+  gem 'pry-byebug'
+  gem 'pry-rails'
+  gem 'pry-doc'
+  gem 'binding_of_caller'
+  gem 'better_errors'
 end
 
 group :test do
