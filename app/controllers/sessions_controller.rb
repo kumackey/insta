@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :require_login, only: %i[destroy]  
+  before_action :require_login, only: %i[destroy]
 
   def new
     @user = User.new
