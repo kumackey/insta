@@ -27,6 +27,16 @@ class PostsController < ApplicationController
     @posts = Post.all.includes(:user)
   end
 
+  def update
+    @post = current_user.posts.find(params[:id])
+    if @post.update(post_params)
+      redirect_back_or_to posts_path, success: '投稿を更新しました'
+    else
+      flash.now[:danger] = '更新に失敗しました'
+      render :edit
+    end
+  end
+
   private
 
   def post_params
