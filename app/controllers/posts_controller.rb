@@ -7,6 +7,12 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    if @post.save
+      redirect_back_or_to posts_path, success: '投稿しました'
+    else
+      flash.now[:danger] = '投稿に失敗しました'
+      render :new
+    end
   end
 
   def new
