@@ -59,8 +59,15 @@ RSpec.describe User, type: :model do
   end
 
   it "ユーザが消去されたとき投稿も消えること" do
-  owner = FactoryBot.create(:user)
-  FactoryBot.create(:post, user_id: owner.id)
-  expect{ owner.destroy }.to change{ Post.count }.by(-1)
+    owner = FactoryBot.create(:user)
+    FactoryBot.create(:post, user_id: owner.id)
+    expect{ owner.destroy }.to change{ Post.count }.by(-1)
+  end
+
+  it "ユーザが消去されたとき投稿のコメントも消えること" do
+    owner = FactoryBot.create(:user)
+    post_by_owner = FactoryBot.create(:post, user_id: owner.id)
+    FactoryBot.create(:comment, post_id: post_by_owner.id)
+    expect{ owner.destroy }.to change{ Comment.count }.by(-1)
   end
 end

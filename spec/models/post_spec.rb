@@ -50,4 +50,10 @@ RSpec.describe Post, type: :model do
       end
     end
   end
+
+  it "投稿が消去されたときコメントも消えること" do
+    post = FactoryBot.create(:post)
+    FactoryBot.create(:comment, post_id: post.id)
+    expect{ post.destroy }.to change{ Comment.count }.by(-1)
+  end
 end

@@ -20,7 +20,7 @@
 #
 
 class Post < ApplicationRecord
-  has_many :comments
+  has_many :comments, dependent: :destroy
   mount_uploaders :images, ImageUploader
   belongs_to :user
   default_scope -> { order(created_at: :desc) }
