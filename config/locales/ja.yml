@@ -1,16 +1,23 @@
 ja:
-    activerecord:
-      attributes:
-        user:
-          name: 名前
-          email: Eメール
-          password: パスワード
-          password_confirmation: パスワード確認
-        post:
-          images: '画像'
-          content: '本文'
-    helpers:
-      label:
-        item:
-        email: Eメール 
-        password: パスワード
+  activerecord:
+    models:
+      user: 'ユーザー'
+      post: '投稿'
+      comment: 'コメント'
+    attributes:
+      user:
+        name: '名前'
+        email: 'Eメール'
+        password: 'パスワード'
+        password_confirmation: 'パスワード確認'
+      post:
+        images: '画像'
+        content: '本文'
+      comment:
+        content: 'コメント'
+        user_id: 'ユーザー'
+        post_id: '投稿'
+
+  attributes:
+    created_at: '作成日時'
+    updated_at: '更新日時'
