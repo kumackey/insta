@@ -3,12 +3,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.build(comment_create_params)
-    if @comment.save
-      redirect_back_or_to posts_path, success: 'コメントしました'
-    else
-      flash.now[:danger] = 'コメントに失敗しました'
-      render :new
-    end
+    @comment.save
   end
 
   private
