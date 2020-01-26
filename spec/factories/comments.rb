@@ -22,8 +22,8 @@
 
 FactoryBot.define do
   factory :comment do
-    content "MyString"
-    user nil
-    post nil
+    content { "テストコメントです" }
+    association :user
+    association :post
   end
 end

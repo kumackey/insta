@@ -23,5 +23,18 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "有効なファクトリを持つこと" do
+    comment = FactoryBot.build(:comment)
+    expect(comment).to be_valid
+  end
+
+  it "ユーザの無いコメントは無効なこと" do
+    comment = FactoryBot.build(:comment, user_id: nil)
+    expect(comment).not_to be_valid
+  end
+
+  it "投稿の無いコメントは無効なこと" do
+    comment = FactoryBot.build(:comment, post_id: nil)
+    expect(comment).not_to be_valid
+  end
 end
