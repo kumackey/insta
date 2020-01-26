@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       auto_login(@user)
-      redirect_back_or_to @user, success: 'ユーザを作成しました'
+      redirect_back_or_to login_path, success: 'ユーザを作成しました'
     else
       render :new
     end
