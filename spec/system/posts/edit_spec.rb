@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Posts', type: :system do
   it '投稿を編集できること' do
     user = login_user_as(user)
-    post = FactoryBot.create(:post, user: user, content: 'This is first post')
+    post = create(:post, user: user, content: 'This is first post')
 
     #編集に失敗
     visit edit_post_path post

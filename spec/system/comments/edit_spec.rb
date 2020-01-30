@@ -3,14 +3,14 @@ require 'rails_helper'
 RSpec.describe 'Comments', type: :system do
   it '自分のコメントは編集でき、他人のコメントは編集できないこと' do
     user = login_user_as(user)
-    other_user = FactoryBot.create(:user)
-    post = FactoryBot.create(:post)
-    comment_by_other_user = FactoryBot.create(:comment,
+    other_user = create(:user)
+    post = create(:post)
+    comment_by_other_user = create(:comment,
       post: post,
       user: other_user,
       content: 'This is a comment by other user.'
     )
-    comment_by_user = FactoryBot.create(:comment,
+    comment_by_user = create(:comment,
       post: post,
       user: user,
       content: 'This is a comment by user.'
