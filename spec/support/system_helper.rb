@@ -1,6 +1,6 @@
 module SystemHelper
   def login_user
-    user = FactoryBot.create(:user)
+    user = create(:user)
     visit login_path
     fill_in 'email', with: user.email
     fill_in 'password', with: '1234512345'
@@ -8,7 +8,7 @@ module SystemHelper
   end
 
   def login_user_as(user)
-    user = FactoryBot.create(:user)
+    user = create(:user)
     visit login_path
     fill_in 'email', with: user.email
     fill_in 'password', with: '1234512345'

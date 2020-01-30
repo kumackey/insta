@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Users', type: :system do
   before do
-    @user = FactoryBot.build(:user)
+    @user = build(:user)
   end
   it "ユーザを作成でき、そのユーザでログインできること" do
     visit new_user_path

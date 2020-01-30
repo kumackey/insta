@@ -18,7 +18,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { create(:user) }
   it "有効なファクトリを持つこと" do
     expect(user).to be_valid
   end
@@ -31,13 +31,13 @@ RSpec.describe User, type: :model do
 
   describe "名前の最大文字数が100文字" do
     context "名前が100文字" do
-      let(:user) { FactoryBot.build(:user, name:'a' * 100) }
+      let(:user) { build(:user, name:'a' * 100) }
       it "有効であること" do
         expect(user).to be_valid
       end
     end
     context "名前が101文字" do
-      let(:user) { FactoryBot.build(:user, name:'a' * 101) }
+      let(:user) { build(:user, name:'a' * 101) }
       it "無効であること" do
         user.valid?
         expect(user.errors[:name]).to include("は100文字以内で入力してください")
@@ -52,15 +52,22 @@ RSpec.describe User, type: :model do
   end
   
   it "重複したメールアドレスなら無効な状態であること" do
-    FactoryBot.create(:user, email:"dup@example.com")
-    user = FactoryBot.build(:user, email:"dup@example.com")
+    create(:user, email:"dup@example.com")
+    user = build(:user, email:"dup@example.com")
     user.valid?
     expect(user.errors[:email]).to include("はすでに存在します")
   end
 
   it "ユーザが消去されたとき投稿も消えること" do
-  owner = FactoryBot.create(:user)
-  FactoryBot.create(:post, user_id: owner.id)
-  expect{ owner.destroy }.to change{ Post.count }.by(-1)
+    owner = create(:user)
+    create(:post, user_id: owner.id)
+    expect{ owner.destroy }.to change{ Post.count }.by(-1)
+  end
+
+  it "ユーザが消去されたとき投稿のコメントも消えること" do
+    owner = create(:user)
+    post_by_owner = create(:post, user_id: owner.id)
+    create(:comment, post_id: post_by_owner.id)
+    expect{ owner.destroy }.to change{ Comment.count }.by(-1)
   end
 end
