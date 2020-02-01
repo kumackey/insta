@@ -27,4 +27,14 @@ RSpec.describe Like, type: :model do
     like = build(:like)
     expect(like).to be_valid
   end
+
+  it "ユーザの無いいいねは無効なこと" do
+    like = build(:like, user_id: nil)
+    expect(like).not_to be_valid
+  end
+
+  it "投稿の無いいいねは無効なこと" do
+    like = build(:like, post_id: nil)
+    expect(like).not_to be_valid
+  end
 end
