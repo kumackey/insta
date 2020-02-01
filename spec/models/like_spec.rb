@@ -37,11 +37,4 @@ RSpec.describe Like, type: :model do
     like = build(:like, post_id: nil)
     expect(like).not_to be_valid
   end
-
-  it "likeメソッドが有効なこと" do
-    user = create(:user)
-    post = create(:post)
-    like_by_user = user.like(post)
-    expect(like_by_user.include?(post)).to be_truthy
-  end
 end

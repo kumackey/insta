@@ -77,4 +77,10 @@ RSpec.describe User, type: :model do
     create(:like, post_id: post_by_owner.id)
     expect{ owner.destroy }.to change{ Like.count }.by(-1)
   end
+
+  it "likeメソッドが有効なこと" do
+    user = build(:user)
+    post = build(:post)
+    expect(user.like(post).include?(post)).to be_truthy
+  end
 end
