@@ -56,4 +56,10 @@ RSpec.describe Post, type: :model do
     create(:comment, post_id: post.id)
     expect{ post.destroy }.to change{ Comment.count }.by(-1)
   end
+
+  it "投稿が消去されたときいいねも消えること" do
+    post = create(:post)
+    create(:like, post_id: post.id)
+    expect{ post.destroy }.to change{ Like.count }.by(-1)
+  end
 end
