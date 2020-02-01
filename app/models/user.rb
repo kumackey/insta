@@ -34,4 +34,8 @@ class User < ApplicationRecord
   def like(post)
     like_posts << post
   end
+
+  def like?(post)
+    like_posts.include?(post)
+  end
 end

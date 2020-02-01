@@ -81,6 +81,7 @@ RSpec.describe User, type: :model do
   it "likeメソッドが有効なこと" do
     user = build(:user)
     post = build(:post)
-    expect(user.like(post).include?(post)).to be_truthy
+    user.like(post)
+    expect(user.like?(post)).to be_truthy
   end
 end
