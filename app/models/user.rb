@@ -18,6 +18,7 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
   authenticates_with_sorcery!
   validates :name, presence: true, length: { maximum: 100 }
   validates :email, presence: true, uniqueness: { case_sensitive: false }
@@ -26,6 +27,10 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
 
   def own?(object)
+    id == object.user_id
+  end
+
+  def like?(object)
     id == object.user_id
   end
 end
