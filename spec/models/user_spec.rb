@@ -79,11 +79,11 @@ RSpec.describe User, type: :model do
   end
 
   it "like、unlikeメソッドが有効なこと" do
-    user = build(:user)
-    post = build(:post)
-    user.like(post)
+    user = create(:user)
+    post = create(:post)
+    expect { user.like(post) }.to change{ Like.count }.by(1)
     expect(user.like?(post)).to be_truthy
-    user.unlike(post)
+    expect { user.unlike(post) }.to change{ Like.count }.by(-1)
     expect(user.like?(post)).not_to be_truthy
   end
 end
