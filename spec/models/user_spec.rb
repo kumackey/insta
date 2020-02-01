@@ -78,10 +78,12 @@ RSpec.describe User, type: :model do
     expect{ owner.destroy }.to change{ Like.count }.by(-1)
   end
 
-  it "likeメソッドが有効なこと" do
+  it "like、unlikeメソッドが有効なこと" do
     user = build(:user)
     post = build(:post)
     user.like(post)
     expect(user.like?(post)).to be_truthy
+    user.unlike(post)
+    expect(user.like?(post)).not_to be_truthy
   end
 end
