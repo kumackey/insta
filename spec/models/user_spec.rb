@@ -70,4 +70,20 @@ RSpec.describe User, type: :model do
     create(:comment, post_id: post_by_owner.id)
     expect{ owner.destroy }.to change{ Comment.count }.by(-1)
   end
+
+  it "ユーザが消去されたとき投稿のいいねも消えること" do
+    owner = create(:user)
+    post_by_owner = create(:post, user_id: owner.id)
+    create(:like, post_id: post_by_owner.id)
+    expect{ owner.destroy }.to change{ Like.count }.by(-1)
+  end
+
+  it "like、unlikeメソッドが有効なこと" do
+    user = create(:user)
+    post = create(:post)
+    expect { user.like(post) }.to change{ Like.count }.by(1)
+    expect(user.like?(post)).to be_truthy
+    expect { user.unlike(post) }.to change{ Like.count }.by(-1)
+    expect(user.like?(post)).not_to be_truthy
+  end
 end

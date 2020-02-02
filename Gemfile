@@ -53,6 +53,10 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 4.10.0'
   gem 'faker'
   gem 'launchy', '~> 2.4.3'
+  gem 'pry-byebug'
+  gem 'pry-rails'
+  gem 'pry-doc'
+  gem 'binding_of_caller'
 end
 
 group :development do
@@ -65,10 +69,6 @@ group :development do
   gem 'spring-commands-rspec'
   gem 'rubocop-rails'
   gem 'rubocop', require: false
-  gem 'pry-byebug'
-  gem 'pry-rails'
-  gem 'pry-doc'
-  gem 'binding_of_caller'
   gem 'better_errors'
 end
 
