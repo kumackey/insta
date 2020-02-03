@@ -8,3 +8,11 @@ puts 'Start inserting seed "users" ...'
    )
    puts "\"#{user.name}\" has created!"
 end
+
+guest_user = User.create(
+  name: 'guest',
+  email: 'guest@guest',
+  password: "guest",
+  password_confirmation: "guest",
+)
+puts "\"#{guest_user.name}\" has created!"
