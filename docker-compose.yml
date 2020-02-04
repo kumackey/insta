@@ -2,17 +2,15 @@ version: '3'
 services:
     db:
         image: mysql:5.7
-        environment:
-            MYSQL_ROOT_PASSWORD: P@ssw0rd
-            MYSQL_DATABASE: root
+        env_file: ./docker/mysql/development.env
         ports:
             - "3306:3306"
-    
+        volumes:
+            - ./docker/mysql/volumes:/var/lib/mysql  
     redis:
-        image: redis:latest
+        image: redis:3.0.5
         ports:
             - 6379:6379
-
     web:
         build: .
         command: rails s -p 3000 -b '0.0.0.0'
@@ -23,5 +21,4 @@ services:
         links:
             - db
             - redis
-        environment:
-            MYSQL_ROOT_PASSWORD: P@ssw0rd
+        env_file: ./docker/mysql/development.env
