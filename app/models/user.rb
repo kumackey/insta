@@ -20,6 +20,9 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :like_posts, through: :likes, source: :post
+  has_many :active_relationships, class_name: 'Relationship',
+                                  foreign_key: 'follower_id',
+                                  dependent: :destroy
   authenticates_with_sorcery!
   validates :name, presence: true, length: { maximum: 100 }
   validates :email, presence: true, uniqueness: { case_sensitive: false }
