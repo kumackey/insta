@@ -86,12 +86,21 @@ RSpec.describe User, type: :model do
     expect { user.unlike(post) }.to change{ Like.count }.by(-1)
     expect(user.like?(post)).not_to be_truthy
   end
+
   describe "relationship" do
     let(:user) { create(:user) }
     let(:other_user) { create(:user) }
-    it "フォローができること" do
+    it "フォローしている状態が有効なこと" do
       relationship = user.active_relationships.build(followed_id: other_user.id)
       expect(relationship).to be_valid
     end
+    it "フォローとアンフォローが可能なこと" do
+      expect(user.following?(other_user)).not_to be_truthy
+      user.follow(other_user)
+      expect(user.following?(other_user)).to be_truthy
+      user.unfollow(other_user)
+      expect(user.following?(other_user)).not_to be_truthy
+    end
   end
+
 end
