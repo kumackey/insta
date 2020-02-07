@@ -96,10 +96,13 @@ RSpec.describe User, type: :model do
     end
     it "フォローとアンフォローが可能なこと" do
       expect(user.following?(other_user)).not_to be_truthy
+      expect(other_user.followers.include?(user)).not_to be_truthy
       user.follow(other_user)
       expect(user.following?(other_user)).to be_truthy
+      expect(other_user.followers.include?(user)).to be_truthy
       user.unfollow(other_user)
       expect(user.following?(other_user)).not_to be_truthy
+      expect(other_user.followers.include?(user)).not_to be_truthy
     end
   end
 
