@@ -90,10 +90,12 @@ RSpec.describe User, type: :model do
   describe "relationship" do
     let(:user) { create(:user) }
     let(:other_user) { create(:user) }
+
     it "フォローしている状態が有効なこと" do
       relationship = user.active_relationships.build(followed_id: other_user.id)
       expect(relationship).to be_valid
     end
+
     it "フォローとアンフォローが可能なこと" do
       expect(user.following?(other_user)).not_to be_truthy
       expect(other_user.followers.include?(user)).not_to be_truthy
@@ -103,6 +105,17 @@ RSpec.describe User, type: :model do
       user.unfollow(other_user)
       expect(user.following?(other_user)).not_to be_truthy
       expect(other_user.followers.include?(user)).not_to be_truthy
+    end
+    
+    it "フィードが機能していること" do
+      post_by_user = create(:post, user_id: user.id)
+      post_by_other_user = create(:post, user_id: other_user.id)
+      expect(user.feed.include?(post_by_other_user)).not_to be_truthy
+      expect(user.feed.include?(post_by_user)).to be_truthy
+      user.follow(other_user)
+      expect(user.feed.include?(post_by_other_user)).to be_truthy
+      user.unfollow(other_user)
+      expect(user.feed.include?(post_by_other_user)).not_to be_truthy
     end
   end
 
