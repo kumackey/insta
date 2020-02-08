@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :require_login, only: %i[new create edit update destroy]
 
   def index
+    @users = User.limit(5)
     @posts = Post.all.includes(:user).page(params[:page]).per(15)
   end
 
