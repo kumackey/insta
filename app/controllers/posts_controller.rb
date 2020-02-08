@@ -3,7 +3,12 @@ class PostsController < ApplicationController
 
   def index
     @users = User.limit(5)
-    @posts = Post.all.includes(:user).page(params[:page]).per(15)
+    @posts = if logged_in?
+               current_user.feed.includes(:user)
+             else
+               Post.all.includes(:user)
+             end
+    @posts = @posts.page(params[:page]).per(15)
   end
 
   def create
