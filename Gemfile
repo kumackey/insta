@@ -56,6 +56,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-doc'
   gem 'binding_of_caller'
+  gem 'rspec-rails', '~> 3.8.0'
 end
 
 group :development do
@@ -78,7 +79,6 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'webdrivers'
   gem 'database_cleaner'
-  gem 'rspec-rails', '~> 3.8.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
