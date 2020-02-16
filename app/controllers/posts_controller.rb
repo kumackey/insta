@@ -8,7 +8,7 @@ class PostsController < ApplicationController
              else
                Post.all.includes(:user)
              end
-    @posts = @posts.page(params[:page]).per(15)
+    @posts = @posts.page(params[:page]).per(15).order(created_at: :desc)
   end
 
   def create
@@ -31,7 +31,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments.includes(:user)
+    @comments = @post.comments.includes(:user).order(created_at: :desc)
     @comment = Comment.new
   end
 

@@ -24,6 +24,5 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   mount_uploaders :images, ImageUploader
   belongs_to :user
-  default_scope -> { order(created_at: :desc) }
   validates :content, presence: true, length: { maximum: 140 }
 end
