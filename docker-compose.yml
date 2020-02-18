@@ -6,16 +6,16 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./docker/mysql/volumes:/var/lib/mysql  
+      - db:/var/lib/mysql  
   redis:
     image: redis:3.0.5
     ports:
       - 6379:6379
   web:
     build: .
-    command: rails s -p 3000 -b '0.0.0.0'
+    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
-      - .:/webapp
+      - web:/webapp
     ports:
       - "3000:3000"
     links:
@@ -24,5 +24,8 @@ services:
     env_file: ./docker/mysql/development.env
     tty: true
     stdin_open: true
-
-        
+volumes:
+  db:
+    driver: 'local'
+  web:
+    driver: 'local'
