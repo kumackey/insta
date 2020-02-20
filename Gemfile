@@ -49,7 +49,6 @@ gem 'kaminari'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'rspec-rails', '~> 3.8.0'
   gem 'factory_bot_rails', '~> 4.10.0'
   gem 'faker'
   gem 'launchy', '~> 2.4.3'
@@ -57,6 +56,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-doc'
   gem 'binding_of_caller'
+  gem 'rspec-rails', '~> 3.8.0'
 end
 
 group :development do
@@ -68,7 +68,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec'
   gem 'rubocop-rails'
-  gem 'rubocop', require: false
+  gem 'rubocop'
   gem 'better_errors'
 end
 
