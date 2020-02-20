@@ -76,6 +76,7 @@ RSpec.configure do |config|
 
   config.include SystemHelper, type: :system
   config.include FactoryBot::Syntax::Methods
+  config.include Sorcery::TestHelpers::Rails
 
   config.before(:each, type: :system) do
     driven_by :rack_test
