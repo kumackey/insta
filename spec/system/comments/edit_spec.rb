@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Comments', type: :system do
+RSpec.xdescribe 'Comments', type: :system do
   it '自分のコメントは編集でき、他人のコメントは編集できないこと' do
     user = login_user_as(user)
     other_user = create(:user)

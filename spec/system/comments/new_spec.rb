@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Comments', type: :system do
+RSpec.xdescribe 'Comments', type: :system do
   it 'コメントしたときにコメントが表示されること' do
     user = login_user_as(user)
     post = create(:post, user: user, content: 'This is first post')
