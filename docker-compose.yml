@@ -24,6 +24,8 @@ services:
     env_file: .env
     tty: true
     stdin_open: true
+    volumes:
+      - .:/webapp:cached
 volumes:
   db:
   redis:
