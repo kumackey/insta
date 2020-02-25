@@ -25,4 +25,6 @@ class Post < ApplicationRecord
   mount_uploaders :images, ImageUploader
   belongs_to :user
   validates :content, presence: true, length: { maximum: 140 }
+
+  scope :content_contain, ->(word) { where('content LIKE ?', "%#{word}%") }
 end
