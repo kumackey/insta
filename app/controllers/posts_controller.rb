@@ -52,7 +52,7 @@ class PostsController < ApplicationController
   end
 
   def search
-    @posts = Post.all.includes(:user).page(params[:page]).per(15).order(created_at: :desc)
+    @posts = @search_form.search.includes(:user).page(params[:page])
   end
 
   private
