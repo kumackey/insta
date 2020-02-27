@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Posts', type: :system do
-  it '投稿に失敗したときに投稿画面に遷移すること' do
+  xit '投稿に失敗したときに投稿画面に遷移すること' do
     login_user
 
     #投稿に失敗時
