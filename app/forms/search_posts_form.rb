@@ -5,7 +5,8 @@ class SearchPostsForm
   attribute :content, :string
 
   def search
-    scope = Post.all.content_contain(content) if content.present?
+    scope = Post.all
+    scope = scope.content_contain(content) if content.present?
     scope
   end
 end
