@@ -62,4 +62,13 @@ RSpec.describe Post, type: :model do
     create(:like, post_id: post.id)
     expect{ post.destroy }.to change{ Like.count }.by(-1)
   end
+
+  it "検索条件に一致する投稿は、検索機能content_containで検出できること" do
+      word_matched = "こんにちは!"
+      expect{
+      create(:post, content: "#{word_matched} この投稿1は検索に引っかかります")
+      create(:post, content: "どうも、#{word_matched}　この投稿2は検索に引っかかります")
+      create(:post, content: "こんばんは、この投稿3は検索に引っかかりません")
+      }.to change{ Post.all.content_contain(word_matched).count }.by(2)
+  end
 end
