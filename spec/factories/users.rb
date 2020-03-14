@@ -19,6 +19,7 @@
 FactoryBot.define do
   factory :user do
     name  { Faker::Name.name }
+    avatar { File.open("#{Rails.root}/spec/factories/test1.png") }
     sequence(:email) { |n| "tester#{n}@example.com" }
     password  { "1234512345" }
     password_confirmation { "1234512345" }
