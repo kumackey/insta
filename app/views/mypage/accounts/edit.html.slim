@@ -2,9 +2,9 @@
   = render 'shared/error_messages', object: f.object
   .form-group
     = f.label :avatar
-    = f.file_field :avatar, class: 'form-control', accept: 'image/*'
+    = f.file_field :avatar, class: 'form-control', onchange: 'previewFileWithId(preview)', accept: 'image/*'
     = f.hidden_field :avatar_cache
-    = image_tag current_user.avatar.url, class: 'rounded-circle', size: '100x100'
+    = image_tag current_user.avatar.url, class: 'rounded-circle', id: 'preview', size: '100x100'
   .form-group
     = f.label :name
     = f.text_field :name, class: 'form-control'
