@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id               :bigint           not null, primary key
+#  avatar           :string(255)
 #  crypted_password :string(255)
 #  email            :string(255)      not null
 #  name             :string(255)      not null
@@ -16,6 +17,9 @@
 #
 
 class User < ApplicationRecord
+  authenticates_with_sorcery!
+  mount_uploader :avatar, AvatarUploader
+
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
@@ -28,7 +32,7 @@ class User < ApplicationRecord
                                    dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
-  authenticates_with_sorcery!
+
   validates :name, presence: true, length: { maximum: 100 }
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
