@@ -3,8 +3,11 @@
     .col-md-6.offset-md-3
       .card
         .card-body
+          - if logged_in? && current_user.id == @user.id
+            .text-center.mb-3
+              = link_to 'プロフィール編集', edit_mypage_account_path, class: 'btn btn-raised btn-warning'
           .text-center.mb-3
-            = image_tag 'profile-placeholder.png', size: '100×100', class: 'rounded-circle mr-1'
+            = image_tag @user.avatar.url, size: '100×100', class: 'rounded-circle mr-1'
           .profile.text-center.mb-3
             = @user.name
           .text-center
